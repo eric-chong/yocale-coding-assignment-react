@@ -1,9 +1,8 @@
 import AppConfig from "src/AppConfig";
 
 export default async function updateTicket(ticketId: number, payload: any) {
-  console.log("payload", payload);
   const response = await fetch(`${AppConfig.apiUrl}/tickets/${ticketId}`, {
-    method: "PUT",
+    method: "PATCH",
     body: JSON.stringify(payload),
   });
 

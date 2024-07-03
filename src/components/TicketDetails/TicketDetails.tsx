@@ -13,7 +13,7 @@ export default function TicketDetails({ ticket, users }: Props) {
   const mutation = useTicketMutation(ticket.id);
 
   const handleStatusChange = (value: string) => {
-    mutation.mutate({ ...ticket, status: value });
+    mutation.mutate({ status: value });
   };
 
   return (
