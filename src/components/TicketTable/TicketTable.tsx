@@ -12,7 +12,7 @@ import { Ticket, User } from "src/types";
 import { getUserName } from "src/utils/userHelper";
 import { getStatusName } from "src/utils/statusHelper";
 
-interface Props {
+export interface Props {
   tickets: Ticket[];
   users: User[];
 }
