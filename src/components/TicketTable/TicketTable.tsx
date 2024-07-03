@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import {
   Paper,
   Table,
@@ -25,6 +26,7 @@ export default function TicketTable({ tickets, users }: Props) {
             <TableCell>Ticket number</TableCell>
             <TableCell>User</TableCell>
             <TableCell>Status</TableCell>
+            <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,6 +37,9 @@ export default function TicketTable({ tickets, users }: Props) {
               </TableCell>
               <TableCell>{getUserName(users, ticket.userId)}</TableCell>
               <TableCell>{getStatusName(ticket.status)}</TableCell>
+              <TableCell>
+                <NavLink to={`/tickets/${ticket.id}`}>Edit</NavLink>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
