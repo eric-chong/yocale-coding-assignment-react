@@ -1,7 +1,8 @@
 import { List, ListItem, ListItemText } from "@mui/material";
+import StatusSelect from "../StatusSelect";
 import { Ticket, User } from "src/types";
 import { getUserName } from "src/utils/userHelper";
-import { getStatusName } from "src/utils/statusHelper";
+import useTicketMutation from "src/hooks/queries/tickets/useTicketMutation";
 
 interface Props {
   ticket: Ticket;
@@ -9,6 +10,12 @@ interface Props {
 }
 
 export default function TicketDetails({ ticket, users }: Props) {
+  const mutation = useTicketMutation(ticket.id);
+
+  const handleStatusChange = (value: string) => {
+    mutation.mutate({ ...ticket, status: value });
+  };
+
   return (
     <List
       sx={{
@@ -31,7 +38,12 @@ export default function TicketDetails({ ticket, users }: Props) {
       <ListItem>
         <ListItemText
           primary="Status"
-          secondary={<div>{getStatusName(ticket.status)}</div>}
+          secondary={
+            <StatusSelect
+              status={ticket.status}
+              onChange={handleStatusChange}
+            />
+          }
         />
       </ListItem>
     </List>
