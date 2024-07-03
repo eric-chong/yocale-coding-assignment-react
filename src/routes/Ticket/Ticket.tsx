@@ -1,3 +1,9 @@
+import { Typography } from "@mui/material";
+
 export default function Ticket() {
-  return <h1>Ticket detail page</h1>;
+  return (
+    <Typography variant="h4" component="h1">
+      Ticket detail
+    </Typography>
+  );
 }
