@@ -14,7 +14,13 @@ export default function StatusSelect({ status, onChange }: Props) {
   };
 
   return (
-    <Select size="small" value={status} onChange={handleChange}>
+    <Select
+      size="small"
+      value={status}
+      onChange={handleChange}
+      aria-label="status select"
+      data-testid="status-select"
+    >
       <MenuItem value={Status.Assigned}>
         {getStatusName(Status.Assigned)}
       </MenuItem>
