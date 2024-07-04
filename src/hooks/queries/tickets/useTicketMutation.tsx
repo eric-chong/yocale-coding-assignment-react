@@ -8,10 +8,13 @@ export default function useTicketMutation(ticketId: number) {
     mutationFn: async (payload: any) => {
       return updateTicket(ticketId, payload);
     },
-    onMutate: async (newTicket) => {
+    onMutate: async (newTicketValues) => {
       await queryClient.cancelQueries({ queryKey });
-      const previousTicket = queryClient.getQueryData(queryKey);
-      queryClient.setQueryData(queryKey, () => newTicket);
+      const previousTicket = queryClient.getQueryData(queryKey) || {};
+      queryClient.setQueryData(queryKey, () => ({
+        ...previousTicket,
+        ...newTicketValues,
+      }));
       return { previousTicket };
     },
     onError: (err, newTicket, context) => {
